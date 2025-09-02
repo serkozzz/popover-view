@@ -12,7 +12,7 @@ struct PopoverView: ViewModifier {
     var height: CGFloat = 100
     var width: CGFloat = 200
     @Binding var show: Bool
-    @State var buttonCenterInGlobals: CGPoint?
+    @State var centerOfPresentingInGlobals: CGPoint?
     
     
     
@@ -21,24 +21,52 @@ struct PopoverView: ViewModifier {
             content
                 .readCenter()
                 .onPreferenceChange(CenterPreferenceKey.self) { value in
-                    buttonCenterInGlobals = value
+                    centerOfPresentingInGlobals = value
                 }
                 .overlay {
                     ZStack {
-                        if let buttonCenterInGlobals {
-                            let sign: CGFloat = buttonCenterInGlobals.y - (height + indent) > 0 ? -1 : 1
+                        if let centerOfPresentingInGlobals {
+                            
+                            backAreaForTouches(centerOfPresentingInGlobals)
+                            
+                            let sign: CGFloat = centerOfPresentingInGlobals.y - (height + indent) > 0 ? -1 : 1
                             ZStack   {
-                                Rectangle().fill(Color.black)
+                                Rectangle()
+                                    .fill(Color.black)
                                     .frame(width: width, height: height)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture { }
                                     .offset( y: sign * (height / 2 + indent))
                             }
+                            .zIndex(1000)
                         }
                     }
+                    .transition(.opacity.combined(with: .scale(scale: 0.98)))
                 }
         }
         else {
             content
         }
+    }
+    
+    
+    private func backAreaForTouches(_ centerOfPresentingInGlobals: CGPoint) -> some View {
+        let globalScreenCenter = CGPoint(
+            x: UIScreen.main.bounds.midX,
+            y: UIScreen.main.bounds.midY)
+        
+        let backAreaOffset = CGPoint(x: globalScreenCenter.x - centerOfPresentingInGlobals.x,
+                                     y: globalScreenCenter.y - centerOfPresentingInGlobals.y)
+        
+        return Rectangle()
+            .fill(Color.red.opacity(0.001))
+              .frame(width: UIScreen.main.bounds.width,
+                     height: UIScreen.main.bounds.height)
+              .offset(x: backAreaOffset.x, y: backAreaOffset.y)
+              .onTapGesture {
+                  withAnimation(.easeOut) { show = false }
+              }
+              .zIndex(999)
     }
 }
 

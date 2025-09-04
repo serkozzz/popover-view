@@ -11,7 +11,7 @@
 		9D55391E2E6538950074E241 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55391A2E6538950074E241 /* ContentView.swift */; };
 		9D55391F2E6538950074E241 /* sandboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55391B2E6538950074E241 /* sandboxApp.swift */; };
 		9D5539212E6538A30074E241 /* CenterReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5539202E65389A0074E241 /* CenterReader.swift */; };
-		9D5539232E6541F30074E241 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5539222E6541EC0074E241 /* PopoverView.swift */; };
+		9D5539232E6541F30074E241 /* CustomPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5539222E6541EC0074E241 /* CustomPopover.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +19,7 @@
 		9D55391A2E6538950074E241 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9D55391B2E6538950074E241 /* sandboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sandboxApp.swift; sourceTree = "<group>"; };
 		9D5539202E65389A0074E241 /* CenterReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterReader.swift; sourceTree = "<group>"; };
-		9D5539222E6541EC0074E241 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		9D5539222E6541EC0074E241 /* CustomPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopover.swift; sourceTree = "<group>"; };
 		9DF3542F2E25BBB300DDFCCD /* PopoverView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopoverView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -44,7 +44,7 @@
 		9D55391C2E6538950074E241 /* sandbox */ = {
 			isa = PBXGroup;
 			children = (
-				9D5539222E6541EC0074E241 /* PopoverView.swift */,
+				9D5539222E6541EC0074E241 /* CustomPopover.swift */,
 				9D5539202E65389A0074E241 /* CenterReader.swift */,
 				9D5539182E6538950074E241 /* Preview Content */,
 				9D5539192E6538950074E241 /* Assets.xcassets */,
@@ -142,7 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D5539232E6541F30074E241 /* PopoverView.swift in Sources */,
+				9D5539232E6541F30074E241 /* CustomPopover.swift in Sources */,
 				9D55391E2E6538950074E241 /* ContentView.swift in Sources */,
 				9D55391F2E6538950074E241 /* sandboxApp.swift in Sources */,
 				9D5539212E6538A30074E241 /* CenterReader.swift in Sources */,

@@ -15,7 +15,7 @@ struct ContentView : View {
         ScrollView {
             LazyVStack {
                 ForEach(0...30, id: \.self) { i in
-                    Cell(text: "Hello \(i)")
+                    Cell(cellText: "Hello \(i)")
                 }
             }
         }
@@ -24,21 +24,32 @@ struct ContentView : View {
 }
 
 struct Cell: View {
-    var text: String
+    var cellText: String
     @State private var showPopover: Bool = false
-    
+    @State private var popoverText: String = "Hello"
     
     var body: some View {
         HStack {
-            Text(text)
+            Text(cellText)
             Button("info") {
                 showPopover = true
             }
-
-            .customPopover(show: $showPopover)
+            
+            .customPopover(show: $showPopover,
+                           text: popoverText,
+                           maxWidth: 300)
         }
-       // .frame(maxWidth: .infinity)
+        // .frame(maxWidth: .infinity)
         .buttonStyle(BorderlessButtonStyle())
+        .task {
+            while (true) {
+                try? await Task.sleep(for: .seconds(2))
+                popoverText = "Hello"
+                for i in (0...Int.random(in: 1...10)) {
+                    popoverText += "It's me"
+                }
+            }
+        }
         
     }
 }

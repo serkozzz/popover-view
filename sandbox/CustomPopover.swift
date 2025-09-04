@@ -6,14 +6,17 @@
 //
 import SwiftUI
 
-struct PopoverView: ViewModifier {
+struct CustomPopover: ViewModifier {
+    
+
+
+    @Binding var show: Bool
+    @State var centerOfPresentingInGlobals: CGPoint?
+    var text: String
+    var maxWidth: CGFloat?
     
     var indent: CGFloat = 18
     var height: CGFloat = 100
-    var width: CGFloat = 200
-    @Binding var show: Bool
-    @State var centerOfPresentingInGlobals: CGPoint?
-    
     
     
     func body(content: Content) -> some View {
@@ -31,9 +34,14 @@ struct PopoverView: ViewModifier {
                             
                             let sign: CGFloat = centerOfPresentingInGlobals.y - (height + indent) > 0 ? -1 : 1
                             ZStack   {
-                                Rectangle()
-                                    .fill(Color.black)
-                                    .frame(width: width, height: height)
+                                Text(text)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(Color.black)
+                                    }
+                                    .frame(maxWidth: maxWidth)
                                     .contentShape(Rectangle())
                                     .onTapGesture { }
                                     .offset( y: sign * (height / 2 + indent))
@@ -72,8 +80,8 @@ struct PopoverView: ViewModifier {
 
 extension View {
     
-    func customPopover(show: Binding<Bool>) -> some View {
-        self.modifier(PopoverView(show: show))
+    func customPopover(show: Binding<Bool>, text: String, maxWidth: CGFloat? = nil) -> some View {
+        self.modifier(CustomPopover(show: show, text: text, maxWidth: maxWidth))
     }
 }
 
